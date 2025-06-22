@@ -9,6 +9,14 @@ interface StoreData {
   price: Price;
 }
 
+export interface StorePageProps {
+  id: string;
+  product: string;
+  storeName: string;
+  url: string;
+  price: number;
+}
+
 export class StorePage {
   public readonly id: string;
   public readonly product: string;
@@ -24,23 +32,11 @@ export class StorePage {
     this.price = props.price;
   }
 
-  public static create(props: {
-    id: string;
-    product: string;
-    storeName: string;
-    url: string;
-    price: number;
-  }): StorePage {
+  public static create(props: StorePageProps): StorePage {
     return this.validateAndCreate(props);
   }
 
-  private static validateAndCreate(props: {
-    id: string;
-    product: string;
-    storeName: string;
-    url: string;
-    price: number;
-  }): StorePage {
+  private static validateAndCreate(props: StorePageProps): StorePage {
     const errors: Error[] = [];
     if (!props.id) {
       errors.push(new Error("id is required"));
